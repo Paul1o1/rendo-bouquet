@@ -1,6 +1,6 @@
 # Rendo Bouquet (Next.js)
 
-Minimal Next.js App Router project with KV-backed share links.
+Minimal Next.js App Router project with Upstash Redis-backed share links.
 
 ## Dev
 
@@ -16,6 +16,14 @@ npm run build
 npm start
 ```
 
-## Env
+## Env (Vercel)
 
-Set these in Vercel (Production + Preview): `KV_URL`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`.
+Create an Upstash Redis database and set these environment variables for Production + Preview:
+
+- UPSTASH_REDIS_REST_URL
+- UPSTASH_REDIS_REST_TOKEN
+
+## API
+
+- POST `/api/bouquets` → `{ id }`
+- GET `/api/bouquets/[id]` → bouquet JSON

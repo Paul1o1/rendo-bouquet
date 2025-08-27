@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
+
+const redis = Redis.fromEnv();
 
 export async function GET(
   _req: Request,
   { params }: { params: { id: string } }
 ) {
-  const data = await kv.get(`bouquet:${params.id}`);
+  const data = await redis.get(`bouquet:${params.id}`);
   if (!data) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(data);
 }
